@@ -1,6 +1,5 @@
 # WFIBot
-# ApplicationBotTemplate
-An application command-based bot template to import to replit for bot developers.
+An application command-based bot for FTC team 8651 "Wait For It...".
 
 ╭━━━╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━━╮╭╮╱╱╱╱╱╭╮ ┃╭━╮┃╱╱╱╱╱╱╱╱╭╯╰╮╱╱╱┃╭━╮┣╯╰╮╱╱╱╱┃┃ ┃┃╱┃┣━╮╭┳╮╭┳━┻╮╭╋━━╮┃╰━━╋╮╭╋╮╭┳━╯┣┳━━┳━━╮ ┃╰━╯┃╭╮╋┫╰╯┃╭╮┃┃┃┃━┫╰━━╮┃┃┃┃┃┃┃╭╮┣┫╭╮┃━━┫ ┃╭━╮┃┃┃┃┃┃┃┃╭╮┃╰┫┃━┫┃╰━╯┃┃╰┫╰╯┃╰╯┃┃╰╯┣━━┃ ╰╯╱╰┻╯╰┻┻┻┻┻╯╰┻━┻━━╯╰━━━╯╰━┻━━┻━━┻┻━━┻━━╯
 
