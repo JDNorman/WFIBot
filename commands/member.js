@@ -14,7 +14,7 @@ module.exports = {
             )),
 
     async execute(int) {
-        console.log('A member info command was used');
+        console.log(`${int.author.username} used a member command!`);
         
         const Now = DateTime.local().setZone('Pacific/Auckland');
         const dateString = Now.toFormat('yyyy-MM-dd');

@@ -20,8 +20,8 @@ module.exports = {
     )), //put the comma at the end of the line to signify the end of the command build and the start of the command execute
 
   //Write command execute in here
-  async execute(int /*int short for interaction*/) {
-    console.log(`A ping command was used!`);
+  async execute(int) {
+    console.log(`${int.author.username} used a ping command!`);
 
     //pull information from the command builder
     const user = int.options.getUser("target");
