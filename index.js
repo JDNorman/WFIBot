@@ -105,7 +105,7 @@ client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}!`);
     
     //Activity type
-    client.user.setActivity('/ping!', { type: ActivityType.Listening });
+    client.user.setActivity('/help', { type: ActivityType.Listening });
     
   });
 
