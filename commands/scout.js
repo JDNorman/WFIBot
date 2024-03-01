@@ -22,17 +22,19 @@ module.exports = {
                 { name: '2020 Ultimate Goal', value: '2020' },
                 { name: '2019 Skystone', value: '2019' },
             )
-            .setRequired(true))
-        ),
+        )
+    ),
     
     async execute(int) {
 
-        const team = int.option.team;
-        const year = int.option.year;
+        let currentYear = new Date().getFullYear();
+        const team = int.options.getString('team');
+        const year = int.options.getString('year') | currentYear;
         
         const divclass = 'svelte-zb3av6 vis';
         const webURL = 'https://ftcscout.org/teams/' + team + '?season=' + year;
-        console.log(webURL);
+        const urlString = webURL.toString()
+        console.log(urlString);
 
         const browser = await puppeteer.launch();
         const page = await browser.newPage(webURL);
@@ -41,7 +43,7 @@ module.exports = {
         // const divContent = await scrapeData();
 
 
-        int.reply(webURL)
+        int.reply(urlString);
 
     }
 }
