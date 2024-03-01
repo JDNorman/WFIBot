@@ -24,7 +24,6 @@ const { Permissions } = require('discord.js');
 const { SlashCommandBuilder  } = require('discord.js');
 
 //config requires
-const { password } = require('./config.json');
 const { token } = require('./config.json');
 
 //other setup
@@ -157,39 +156,6 @@ client.on(Events.InteractionCreate, async interaction => {
   });
 
 //PREFIX COMMAND HANDLER SETUP ----------------------------------------//
-//
-//
-//
-//MISC PROGRAMS SETUP --------------------------------------------------\\
-
-//console password setup
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  let logger = false;
-  
-  rl.on('line', (input) => {
-    //your selected password (must be set up in "Secrets" .env file) will unlock the logger (currently 'aabbcc')
-    if (input == password && !logger) {
-      logger = true;
-      console.clear();
-      console.log('Password Accepted!\nLogger Online!');
-    } 
-    //'clear' clears console
-    else if (input == 'clear') {
-      console.clear();
-    } 
-    //'lock' locks console
-    else if (input == 'lock' && logger) {
-      console.clear();
-      console.log('Console cleared')
-      logger = false;
-      console.log('Logger shut down :(\nEnter password to reactivate');
-    }
-  });
-
-//MISC PROGRAMS SETUP --------------------------------------------------//
 //
 //
 //
