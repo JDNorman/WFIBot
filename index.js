@@ -31,7 +31,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const readline = require('readline');
 const { DateTime } = require('luxon');
-const { axios } = require('axios');
+const puppeteer = require('puppeteer');
 
 //embed color (hex value)
 const color = '800000'
