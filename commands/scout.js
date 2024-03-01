@@ -1,8 +1,18 @@
 //imports
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, Embed } = require('discord.js');
 const { ApplicationCommandOptionType } = require('discord.js');
 const puppeteer = require('puppeteer');
-const webURL = 'https://ftcscout.org';
+
+async function scrapeData() {
+
+    //Title div
+    const divContent = await page.evaluate(() => {
+        const divs = Array.from(document.querySelectorAll('div'));
+        const targetDiv = divs[0];
+        return targetDiv ? targetDiv.outerHTML : '';
+    });
+
+}
 
 module.exports = {
     //Command Builder
@@ -29,24 +39,20 @@ module.exports = {
     
     async execute(int) {
 
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.goto(webURL);
-
         const team = int.option.team;
         const year = int.option.year;
+        
+        const divclass = 'svelte-zb3av6 vis';
+        const webURL = 'https://ftcscout.org/teams/' + team + '?season=' + year;
+        
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage(webURL);
+        await page.goto(webURL, {waitUntil: 'networkidle2'});
+    
+        // const divContent = await scrapeData();
 
-        //Put in text into a text box and wait for a response
-        document.getElementById('searchbar').value = team;
 
-        //Select year
-        $("select[name='season'] option").filter(function() {
-            return $(this).text().indexOf(year) > -1;
-        }).prop('selected', true);
-
-        //Extract every div and add information to embeds
-        //Put every element with that class into a list
-        //Take that list and put every item from the lists into embeds
+        // int.reply()
 
     }
 }
