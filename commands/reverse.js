@@ -11,7 +11,7 @@ module.exports = {
       .setRequired(true)),
 
   async execute(int) {
-    console.log(`${int.author.username} used a reverse command!`)
+    console.log(`Someone used a reverse command!`)
     const message = int.options.getString('message').split('').reverse().join('');
     await int.reply(`You said: ${message}`);
     

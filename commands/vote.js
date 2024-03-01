@@ -13,7 +13,7 @@ module.exports = {
         )),
 
     async execute(int) {
-        console.log(`${int.author.username} used a vote command!`);
+        console.log(`Someone used a vote command!`);
         const channelId = '1110753644774707280';
         const Channel = client.channels.cache.get(channelId);
     

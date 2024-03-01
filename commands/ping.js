@@ -21,7 +21,7 @@ module.exports = {
 
   //Write command execute in here
   async execute(int) {
-    console.log(`${int.author.username} used a ping command!`);
+    console.log(`Someone used a ping command!`);
 
     //pull information from the command builder
     const user = int.options.getUser("target");

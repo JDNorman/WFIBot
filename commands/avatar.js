@@ -13,7 +13,7 @@ module.exports = {
             )),
     
     async execute(int) {
-        console.log(`${int.author.username} used an avatar command!`)
+        console.log(`Someone used an avatar command!`)
         const user = int.options.getUser('user') 
         
         await int.reply(user.displayAvatarURL({ dynamic: true}));

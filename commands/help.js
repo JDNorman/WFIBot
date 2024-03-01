@@ -1,5 +1,9 @@
 //imports
 const { SlashCommandBuilder } = require('discord.js');
+const path = require('path');
+const configPath = path.resolve(__dirname, '..', 'config.json');
+const { color } = require(configPath);
+const decimalColor = parseInt(color, 16);
 
 module.exports = {
     //Command Builder
@@ -9,10 +13,10 @@ module.exports = {
     ),
 
     async execute(int) {
-        console.log(`${int.author.username} used a help command!`);
+        console.log(`Someone used a help command!`);
     
         const Embed = {
-            color: color,
+            color: decimalColor,
             title: 'Command List:',
             fields: [  
                 {
