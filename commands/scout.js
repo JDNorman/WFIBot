@@ -28,8 +28,9 @@ module.exports = {
     async execute(int) {
 
         let currentYear = new Date().getFullYear();
+        console.log(currentYear);
         const team = int.options.getString('team');
-        const year = int.options.getString('year') | currentYear;
+        const year = int.options.getString('year') || currentYear;
         
         const divclass = 'svelte-zb3av6 vis';
         const webURL = 'https://ftcscout.org/teams/' + team + '?season=' + year;
@@ -40,7 +41,6 @@ module.exports = {
         const page = await browser.newPage(webURL);
         await page.goto(webURL, {waitUntil: 'networkidle2'});
     
-        // const divContent = await scrapeData();
 
 
         int.reply(urlString);

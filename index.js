@@ -32,6 +32,8 @@ const path = require('node:path');
 const readline = require('readline');
 const { DateTime } = require('luxon');
 const puppeteer = require('puppeteer');
+const configPath = path.resolve(__dirname, '.', 'loading.js');
+const { botloader } = require(configPath);
 
 //embed color (hex value)
 const color = '800000'
@@ -92,6 +94,30 @@ for (const file of commandFiles) {
 
 //APPLICATION FILEPATH SETUP ------------------------------------------//
 //
+//
+//
+//RELOAD BOT SETUP ----------------------------------------------------\\
+
+async function reloadBot() {
+  console.log('Reloading bot...');
+  await client.destroy();
+  startLoader(3000);
+  client.login(token);
+  console.log('Reloaded bot successfully.')
+}
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.on('line', (input) => {
+  if (input.trim() == 'reload') {
+    reloadBot();
+  }
+});
+
+//RELOAD BOT SETUP ----------------------------------------------------//
 //
 //
 //APPLICATION COMMANDS SETUP ------------------------------------------\\
