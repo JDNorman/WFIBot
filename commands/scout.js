@@ -13,6 +13,10 @@ module.exports = {
     .setDMPermission(true)
     .setName('scout')
     .setDescription('Scouting data for a team')
+        .addStringOption(option => 
+        option.setName('team')
+        .setDescription('Team number of the team to search for.')
+        .setRequired(true))
     .addStringOption(option => 
         option.setName('season')
             .setDescription('Which year do you want to search from?')
@@ -24,15 +28,13 @@ module.exports = {
                 { name: '2023 Centerstage', value: '2023' },
             )
         )
-    .addStringOption(option => 
-        option.setName('team')
-        .setDescription('Team number of the team to search for.')
-        .setRequired(true))
     
     ),
 
     async execute(int) {
         console.log(`Someone used a scout command!`);
+
+        int.deferReply(); //edit this message with content, then add more embeds with more data
 
         const thisYear = currentTime.getFullYear();
 

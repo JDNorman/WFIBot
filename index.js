@@ -97,7 +97,7 @@ for (const file of commandFiles) {
 
 client.on("ready", async () => {
     try {
-      await client.application.commands.set([pingSLASH, reverseSLASH, memberSLASH, avatarSLASH, voteSLASH, helpSLASH]);
+      await client.application.commands.set([pingSLASH, reverseSLASH, memberSLASH, avatarSLASH, voteSLASH, helpSLASH, scoutSLASH]);
       console.log('Slash commands registered!');
     } catch (error) {
       console.error(error);
