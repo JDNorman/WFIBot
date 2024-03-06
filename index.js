@@ -21,7 +21,7 @@ const { MessageMentions } = require('discord.js');
 const { MessageSelectMenu } = require('discord.js');
 const { PermissionFlagsBits } = require('discord.js');
 const { Permissions } = require('discord.js');
-const { SlashCommandBuilder  } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 //config requires
 const { token } = require('./config.json');
