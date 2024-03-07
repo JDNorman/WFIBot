@@ -156,7 +156,7 @@ module.exports = {
         //Create Embed!
         const totSeason = new EmbedBuilder()
             .setColor('c71b25')
-            .setTitle('***Total Season Overviewt***')
+            .setTitle('***Total Season Overview***')
             .setDescription('**' + seasonStr + ' season**');
                 
         if (totvalStr != 'null') totSeason.addFields({ name: '*Average points scored per game:*', value: totvalStr });
