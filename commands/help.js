@@ -43,9 +43,13 @@ module.exports = {
                     name: 'Vote',
                     value: 'Sends a poll to the poll channel.'
                 },
+                {
+                    name: 'Scout',
+                    value: 'Sends overall team season data in an embed.'
+                }
             ]
         }
-
+        
         int.reply({ embeds: [Embed]});
     },
 };

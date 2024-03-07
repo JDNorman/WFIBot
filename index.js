@@ -32,9 +32,6 @@ const path = require('node:path');
 const readline = require('readline');
 const { DateTime } = require('luxon');
 
-//embed color (hex value)
-const color = '800000'
-
 //CONSTANTS AND SETUP -------------------------------------------------//
 //
 //

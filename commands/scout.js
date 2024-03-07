@@ -16,8 +16,6 @@ function rounding(input) {
     return roundedNumber.toFixed(2);
 }
 
-
-
 module.exports = {
     //Command Builder
     data: (scoutSLASH = new SlashCommandBuilder()
@@ -132,25 +130,25 @@ module.exports = {
         const totvalStr = String(rounding(parseFloat(totval, 10))) || null;
 
         const totrank = seasonData.data.tot.rank;
-        const totrankStr = String(rounding(parseFloat(totrank, 10))) || null;
+        const totrankStr = String(parseFloat(totrank, 10)) || null;
 
         const avgautoval = seasonData.data.auto.value;
         const avgautovalStr = String(rounding(parseFloat(avgautoval, 10))) || null;
 
         const avgautorank = seasonData.data.auto.rank;
-        const avgautorankStr = String(rounding(parseFloat(avgautorank, 10))) || null;
+        const avgautorankStr = String(parseFloat(avgautorank, 10)) || null;
 
         const avgdcval = seasonData.data.dc.value;
         const avgdcvalStr = String(rounding(parseFloat(avgdcval, 10))) || null;
 
         const avgdcrank = seasonData.data.dc.rank;
-        const avgdcrankStr = String(rounding(parseFloat(avgdcrank, 10))) || null;
+        const avgdcrankStr = String(parseFloat(avgdcrank, 10)) || null;
 
         const avgegval = seasonData.data.eg.value;
         const avgegvalStr = String(rounding(parseFloat(avgegval, 10))) || null;
 
         const avgegrank = seasonData.data.eg.rank;
-        const avgegrankStr = String(rounding(parseFloat(avgegrank, 10))) || null;
+        const avgegrankStr = String(parseFloat(avgegrank, 10)) || null;
 
 
         //Create Embed!
