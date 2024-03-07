@@ -6,6 +6,8 @@ const { color } = require(configPath);
 const decimalColor = parseInt(color, 16);
 const axios = require('axios');
 const readline = require('readline');
+const { DateTime } = require('luxon');
+const { error } = require('console');
 
 module.exports = {
     //Command Builder
@@ -34,17 +36,34 @@ module.exports = {
     async execute(int) {
         console.log(`Someone used a scout command!`);
 
-        int.deferReply(); //edit this message with content, then add more embeds with more data
+        int.deferReply({ ephemeral: true }); //edit this message with content, then add more embeds with more data
 
-        const thisYear = currentTime.getFullYear();
+        let currentDate = new Date();
+        let currentYear = currentDate.getFullYear();
 
         const team = int.options.getString('team');
-        const season = int.options.getString('season') || thisYear;
+        const season = int.options.getString('season') || currentYear;
         
-        axiosGET = "https://api.ftcscout.org/rest/v1/teams" + team + "/quick-stats?season=" + season + "&region=All"
-        axios.get(axiosGET)
+        teamHome = "https://api.ftcscout.org/rest/v1/teams/" + team;
+
+        axios.get(teamHome)
             .then(response => {
                 console.log(response.data["tot"]["value"]);
-            })  
+                int.editReply('HTTP Request sent to console output!')
+
+            })
+            .catch(error => {
+                console.error(error);
+                InteractionCollector.editReply('An error occured while fetching data.');
+            });
+
+
+        // axiosGET = "https://api.ftcscout.org/rest/v1/teams/" + team + "/quick-stats?season=" + season + "&region=All";
+        // axios.get(axiosGET)
+        //     .then(response => {
+        //         console.log(response.data["tot"]["value"]);
+        //     });
+        
     },
 };
+
