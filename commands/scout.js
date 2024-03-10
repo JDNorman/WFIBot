@@ -124,7 +124,7 @@ module.exports = {
         console.log(seasonData.data);
 
         const teamseason = seasonData.data.season;
-        const seasonStr = String(rounding(parseFloat(teamseason, 10))) || null;
+        const seasonStr = String(parseFloat(teamseason, 10)) || null;
 
         const totval = seasonData.data.tot.value;
         const totvalStr = String(rounding(parseFloat(totval, 10))) || null;
