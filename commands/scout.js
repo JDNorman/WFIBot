@@ -100,16 +100,16 @@ module.exports = {
             .setTitle('***' + nameStr + '***') // Team name
             .setDescription('**' + numberStr + '**'); //Team #
             
-        if (schoolStr != 'null') homePage.addFields({ name: '*School:*', value: schoolStr });
+        if (schoolStr != 'null') homePage.addFields({ name: '*School:*', value: '`' + schoolStr + '`' });
         if (sponsorStr.length > 0) {
             sponsorStr.forEach(spo => {
-                homePage.addFields({ name: '*Sponsor:*', value: spo });
+                homePage.addFields({ name: '*Sponsor:*', value: '`' + spo + '`' });
         })};
-        if (countryStr != 'null') homePage.addFields({ name: '*Region:*', value: countryStr, inline: true });
-        if (stateStr != 'null') homePage.addFields({ name: '*State/Province:*', value: stateStr, inline: true });
-        if (cityStr != 'null') homePage.addFields({ name: '*City:*', value: cityStr, inline: true });
-        if (rookieStr != 'null') homePage.addFields({ name: '*Rookie Year:*', value: rookieStr, inline: true });
-        if (websiteStr != 'null') homePage.addFields({ name: '*Website:*', value: websiteStr, inline: true });
+        if (countryStr != 'null') homePage.addFields({ name: '*Region:*', value: '`' + countryStr + '`' });
+        if (stateStr != 'null') homePage.addFields({ name: '*State/Province:*', value: '`' + stateStr + '`' });
+        if (cityStr != 'null') homePage.addFields({ name: '*City:*', value: '`' + cityStr + '`' });
+        if (rookieStr != 'null') homePage.addFields({ name: '*Rookie Year:*', value: '`' + rookieStr + '`' });
+        if (websiteStr != 'null') homePage.addFields({ name: '*Website:*', value: '`' + websiteStr + '`' });
                 
         int.editReply('Embeds constructed!');
             
@@ -157,14 +157,14 @@ module.exports = {
             .setTitle('***Total Season Overview***')
             .setDescription('**' + seasonStr + ' season**');
                 
-        if (totvalStr != 'null') totSeason.addFields({ name: '*Average points scored per game:*', value: totvalStr, inline: true });
-        if (totrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points:*', value: totrankStr });
-        if (avgautovalStr != 'null') totSeason.addFields({ name: '*Average points scored in auto:*', value: avgautovalStr, inline: true });
-        if (avgautorankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in auto:*', value: avgautorankStr });
-        if (avgdcvalStr != 'null') totSeason.addFields({ name: '*Average points scored in driver control:*', value: avgdcvalStr, inline: true });
-        if (avgdcrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in driver control:*', value: avgdcrankStr });
-        if (avgegvalStr != 'null') totSeason.addFields({ name: '*Average points scored in end game:*', value: avgegvalStr, inline: true });
-        if (avgegrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in end game:*', value: avgegrankStr });
+        if (totvalStr != 'null') totSeason.addFields({ name: '*Average points scored per game:*', value: '`' + totvalStr + '`' });
+        if (totrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points:*', value: '`' + totrankStr + '`' });
+        if (avgautovalStr != 'null') totSeason.addFields({ name: '*Average points scored in auto:*', value: '`' + avgautovalStr + '`' });
+        if (avgautorankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in auto:*', value: '`' + avgautorankStr + '`' });
+        if (avgdcvalStr != 'null') totSeason.addFields({ name: '*Average points scored in driver control:*', value: '`' + avgdcvalStr + '`' });
+        if (avgdcrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in driver control:*', value: '`' + avgdcrankStr + '`' });
+        if (avgegvalStr != 'null') totSeason.addFields({ name: '*Average points scored in end game:*', value: '`' + avgegvalStr + '`' });
+        if (avgegrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in end game:*', value: '`' + avgegrankStr + '`' });
             
 
         int.followUp({ embeds: [homePage, totSeason] });
