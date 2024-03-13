@@ -1,9 +1,5 @@
 //imports
-const { SlashCommandBuilder, Embed, TextInputAssertions } = require('discord.js');
-const path = require('path');
-const configPath = path.resolve(__dirname, '..', 'config.json');
-const { color } = require(configPath);
-const decimalColor = parseInt(color, 16);
+const { SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
 const readline = require('readline');
 const { DateTime } = require('luxon');
@@ -22,7 +18,7 @@ module.exports = {
     .setDMPermission(true)
     .setName('scout')
     .setDescription('Scouting data for a team')
-        .addStringOption(option => 
+    .addStringOption(option => 
         option.setName('team')
         .setDescription('Team number of the team to search for.')
         .setRequired(true))
@@ -37,13 +33,12 @@ module.exports = {
                 { name: '2023 Centerstage', value: '2023' },
             )
         )
-    
     ),
 
     async execute(int) {
         console.log(`Someone used a scout command!`);
 
-        int.deferReply({ ephemeral: true }); //edit this message with content, then add more embeds with more data
+        await int.deferReply({ ephemeral: true });
 
         const channel = int.channel;
 
@@ -96,7 +91,7 @@ module.exports = {
 
         //Create the embed!
         const homePage = new EmbedBuilder()
-            .setColor('c71b25') //Embed color
+            .setColor('f57724') //Embed color
             .setTitle('***' + nameStr + '***') // Team name
             .setDescription('**' + numberStr + '**'); //Team #
             
@@ -111,8 +106,7 @@ module.exports = {
         if (rookieStr != 'null') homePage.addFields({ name: '*Rookie Year:*', value: '`' + rookieStr + '`' });
         if (websiteStr != 'null') homePage.addFields({ name: '*Website:*', value: '`' + websiteStr + '`' });
                 
-        int.editReply('Embeds constructed!');
-            
+        await int.editReply('Embeds constructed!');   
 
         teamSeason = "https://api.ftcscout.org/rest/v1/teams/" + team + "/quick-stats?season=" + season;
         let seasonData = await axios.get(teamSeason)
@@ -153,7 +147,7 @@ module.exports = {
 
         //Create Embed!
         const totSeason = new EmbedBuilder()
-            .setColor('c71b25')
+            .setColor('f57724')
             .setTitle('***Total Season Overview***')
             .setDescription('**' + seasonStr + ' season**');
                 
@@ -167,6 +161,6 @@ module.exports = {
         if (avgegrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in end game:*', value: '`' + avgegrankStr + '`' });
             
 
-        int.followUp({ embeds: [homePage, totSeason] });
+        await int.followUp({ embeds: [homePage, totSeason] });
     },
 };
