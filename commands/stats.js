@@ -37,14 +37,14 @@ module.exports = {
         const team = int.options.getString('team');
         const season = int.options.getString('season') || currentYear;
 
-        teamOverview = 'https://api.ftcscout.org/rest/v1/teams/' + team + 'events/' + season;
+        const teamOverview = 'https://api.ftcscout.org/rest/v1/teams/' + team; //+ 'events/' + season;
         let teamStatOverview = await axios.getAdapter(teamOverview)
         .catch(error => {
             console.error(error);
             int.editReply('An error occured while fetching api data.');
         });
 
-        console.log(teamData.data);
+        console.log(teamStatOverview.data);
 
         
 
