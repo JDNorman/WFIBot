@@ -47,8 +47,9 @@ module.exports = {
 
         console.log(teamStatOverview.data);        
 
+        const eventCodes = [];
         if (teamStatOverview && teamStatOverview.data) {
-            const eventCodes = teamStatOverview.data.map(item => item.eventCode);
+            eventCodes = teamStatOverview.data.map(item => item.eventCode);
             console.log(eventCodes);
         }
         else {
@@ -61,6 +62,12 @@ module.exports = {
         // Create embed that has a graph of their opr per event (should go up, also show trendline)
         // Create embed per event that has every stat in a graph (error for max/min and graph shows average) -> total as text
         // Get opr per event and basic event stats
+
+        for (e in eventCodes) {
+
+            
+
+        }
 
     },
 };
