@@ -77,10 +77,11 @@ module.exports = {
 
             //get team stats for the event
             const teamScoreData = eventDataArray.find(obj => obj.teamNumber === team);
+            console.log(teamScoreData);
 
             //from team stats get opr
-            const teamOPR = teamScoreData.stats.opr.totalPointsNp;
-            console.log(teamOPR);
+            const totalPointsNp = teamScoreData['stats']['opr']['totalPointsNp'];
+            console.log(totalPointsNp);
 
         }
 
