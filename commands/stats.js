@@ -47,7 +47,7 @@ module.exports = {
 
         console.log(teamStatOverview.data);        
 
-        const eventCodes = [];
+        let eventCodes = [];
         if (teamStatOverview && teamStatOverview.data) {
             eventCodes = teamStatOverview.data.map(item => item.eventCode);
             console.log(eventCodes);
@@ -63,9 +63,24 @@ module.exports = {
         // Create embed per event that has every stat in a graph (error for max/min and graph shows average) -> total as text
         // Get opr per event and basic event stats
 
-        for (e in eventCodes) {
+        for (i = 0; i < eventCodes.length; i++) {
 
-            
+            //get team opr
+            const teamOprGET = 'https://api.ftcscout.org/rest/v1/events/' + season + '/' + eventCodes[i] + '/teams';
+            const eventData = await axios.get(teamOprGET)
+            .catch(error => {
+                error.console(error);
+                int.editReply('An error occured while fetching api data.');
+            });
+
+            const eventDataArray = Object.keys(eventData); 
+
+            //get team stats for the event
+            const teamScoreData = eventDataArray.find(obj => obj.teamNumber === team);
+
+            //from team stats get opr
+            const teamOPR = teamScoreData.stats.opr.totalPointsNp;
+            console.log(teamOPR);
 
         }
 
