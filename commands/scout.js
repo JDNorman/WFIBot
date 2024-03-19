@@ -40,14 +40,12 @@ module.exports = {
 
         await int.deferReply({ ephemeral: true });
 
-        const channel = int.channel;
-
         const now = new Date();
         const month = now.getMonth();
         const monthsToDecrement = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         const currentYear = monthsToDecrement.includes(month) ? now.getFullYear() - 1 : now.getFullYear();
         
-
+        const channel = int.channel;
         const team = int.options.getString('team');
         const season = int.options.getString('season') || currentYear;
         
