@@ -58,7 +58,9 @@ module.exports = {
         // for every eventcode, get the event averages for data, and also send
         // info about the team's performance at every event (including graphs)
 
-        
+        // Create embed that has a graph of their opr per event (should go up, also show trendline)
+        // Create embed per event that has every stat in a graph (error for max/min and graph shows average) -> total as text
+        // Get opr per event and basic event stats
 
     },
 };
