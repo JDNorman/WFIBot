@@ -1,5 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
+const path = require('path');
+const configPath = path.resolve(__dirname, '..', 'graphqlServer.js');
+const { request }  = require(configPath);
 
 module.exports = {
     //Command Builder
@@ -51,8 +54,7 @@ module.exports = {
         if (teamStatOverview && teamStatOverview.data) {
             eventCodes = teamStatOverview.data.map(item => item.eventCode);
             console.log(eventCodes);
-        }
-        else {
+        } else {
             console.error('No data received from the API');
         }
 
@@ -80,10 +82,28 @@ module.exports = {
             console.log(teamScoreData);
 
             //from team stats get opr
-            const totalPointsNp = teamScoreData['stats']['opr']['totalPointsNp'];
+            const totalPointsNp = teamScoreData['data']['stats']['opr']['totalPointsNp'];
             console.log(totalPointsNp);
 
-        }
+
+            axios.post("https://api.ftcscout.org/graphql", {
+                query: `
+                {
+                    teamByNumber(number:${team}){
+                        quickStats(season:${season}, region:All) {
+                            tot {
+                                value
+                            }
+                        }
+                    }
+                }
+            `
+            }).then(response => {
+                console.log(response.data.data.teamByNumber.quickStats.tot.value);
+            });
+
+
+    }
 
     },
 };
