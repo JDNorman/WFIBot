@@ -20,31 +20,31 @@ module.exports = {
             title: 'Command List:',
             fields: [  
                 {
-                    name: 'Avatar',
+                    name: '/avatar',
                     value: 'Displays member avatar.'
                 },
                 {
-                    name: 'Help', 
+                    name: '/help', 
                     value: 'Displays the help menu.'
                 },
                 {
-                    name: 'Member',
+                    name: '/member',
                     value: 'Displays member information.'
                 },
                 {
-                    name: 'Ping',
+                    name: '/ping',
                     value: 'Pings someone and finds latency'
                 },
                 {
-                    name: 'Reverse',
+                    name: '/reverse',
                     value: 'Sends your text... in reverse!!!'
                 },
                 {
-                    name: 'Vote',
+                    name: '/vote',
                     value: 'Sends a poll to the poll channel.'
                 },
                 {
-                    name: 'Scout',
+                    name: '/scout',
                     value: 'Sends overall team season data in an embed.'
                 }
             ]

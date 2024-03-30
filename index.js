@@ -110,7 +110,7 @@ client.on("ready", async () => {
 //
 //
 //
-//PREFIX COMMAND HANDLER SETUP ----------------------------------------\\
+//INTERACTION COMMAND HANDLER SETUP ----------------------------------------\\
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) {
@@ -152,7 +152,7 @@ client.on(Events.InteractionCreate, async interaction => {
   
   });
 
-//PREFIX COMMAND HANDLER SETUP ----------------------------------------//
+//INTERACTION COMMAND HANDLER SETUP ----------------------------------------//
 //
 //
 //
