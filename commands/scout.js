@@ -5,6 +5,8 @@ const readline = require('readline');
 const { DateTime } = require('luxon');
 const { error, count } = require('console');
 const { EmbedBuilder } = require('discord.js');
+const { request } = require('graphql-request');
+const gql = require('graphql-tag');
 
 function rounding(input) {
     const number = parseFloat(input);
@@ -181,11 +183,16 @@ module.exports = {
     
         //Loop through every event code and do these things in this order:
         //1. Get event median and average and team opr, add opr to an external list teamOPR
+        
+        //Constants I need for the query go here:
+        let totalPoints = [];
+
+        //Loop begin here for each event
         for (i = 0; i < eventCodes.length; i++) {
-            const matchQuery = gql`
-            query{
+            axios.post("https://api.ftcscout.org/graphql", {
+                query: `
                 {
-                    eventByCode(season:` + season + `, code:"` + eventCodes[i] + `") {
+                    eventByCode(season:${season}, code:"${eventCodes[i]}") {
                         matches {
                             scores {
                                 ...on MatchScores2023 {
@@ -200,19 +207,19 @@ module.exports = {
                         }
                     }
                 }
-            }
-            `;
+                `
+            })
+            .catch(error => {
+                console.error(error);
+                int.editReply("An error occured while fetching match data.");
+            })
+            .then(response => {
+                totalPoints = response.data.data.eventByCode.matches.flatMap(match =>
+                    ['red', 'blue'].map(color => match.scores[color].totalPoints)
+                );
+            })
 
-            let matchScoresResponse = await axios.get(matchQuery)
-                .catch(err => {
-                    console.error(err);
-                    int.editReply(`An error occured while fetching match data.`)
-                });
-
-                console.log(matchScoresResponse);
-            // Make an array for every score from the match in that event
-            //const totMatchScores = matchScoresResponse.data.map(item => item.totalPoints);
-            
+            console.log("Match score numbers:", totalPoints);
 
         }
         //2. Do the math and display it at the top
