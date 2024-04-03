@@ -172,7 +172,7 @@ module.exports = {
         let eventCodeResponse = await axios.get(eventCodesQuery)
             .catch(error => {
                 console.error(error);
-                int.editReply('An error occured while fetching team data.');
+                int.editReply('An error occured while fetching event data.');
             });
 
         //Add every eventCode to a list.
@@ -181,6 +181,40 @@ module.exports = {
     
         //Loop through every event code and do these things in this order:
         //1. Get event median and average and team opr, add opr to an external list teamOPR
+        for (i = 0; i < eventCodes.length; i++) {
+            const matchQuery = gql`
+            query{
+                {
+                    eventByCode(season:` + season + `, code:"` + eventCodes[i] + `") {
+                        matches {
+                            scores {
+                                ...on MatchScores2023 {
+                                    red{
+                                        totalPoints
+                                    }
+                                    blue{
+                                        totalPoints
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            `;
+
+            let matchScoresResponse = await axios.get(matchQuery)
+                .catch(err => {
+                    console.error(err);
+                    int.editReply(`An error occured while fetching match data.`)
+                });
+
+                console.log(matchScoresResponse);
+            // Make an array for every score from the match in that event
+            //const totMatchScores = matchScoresResponse.data.map(item => item.totalPoints);
+            
+
+        }
         //2. Do the math and display it at the top
         //3. Show which matches the team played in and their data
         //4. Loop back to the top
