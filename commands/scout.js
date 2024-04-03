@@ -148,7 +148,8 @@ module.exports = {
             .setColor('f57724')
             .setTitle('***Total Season Overview***')
             .setDescription('**' + seasonStr + ' season**');
-                
+
+        
         if (totvalStr != 'null') totSeason.addFields({ name: '*Average points scored per game:*', value: '`' + totvalStr + '`' });
         if (totrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points:*', value: '`' + totrankStr + '`' });
         if (avgautovalStr != 'null') totSeason.addFields({ name: '*Average points scored in auto:*', value: '`' + avgautovalStr + '`' });
@@ -160,5 +161,32 @@ module.exports = {
             
 
         await int.followUp({ embeds: [homePage, totSeason] });
+
+
+        //Get every event code into a list
+        //Use endpoint https://api.ftcscout.org/rest/v1/teams/8651/events/2022
+        //After getting the code, use the query for ftcscout to find event avg and median for stats as well as how well the team performed, put performance into a graph (opr change over time)
+
+        //Get list
+        const eventCodesQuery = "https://api.ftcscout.org/rest/v1/teams/" + team +"/events/" + season;
+        let eventCodeResponse = await axios.get(eventCodesQuery)
+            .catch(error => {
+                console.error(error);
+                int.editReply('An error occured while fetching team data.');
+            });
+
+        //Add every eventCode to a list.
+        const eventCodes = eventCodeResponse.data.map(item => item.eventCode);
+        console.log(eventCodes);
+    
+        //Loop through every event code and do these things in this order:
+        //1. Get event median and average and team opr, add opr to an external list teamOPR
+        //2. Do the math and display it at the top
+        //3. Show which matches the team played in and their data
+        //4. Loop back to the top
+        let teamOPR = [];
+        //foreach (code in eventCodes)
+        
+
     },
 };
