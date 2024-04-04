@@ -189,35 +189,12 @@ module.exports = {
 
         //Loop begin here for each event
         for (i = 0; i < eventCodes.length; i++) {
-            axios.post("https://api.ftcscout.org/graphql", {
-                query: `
-                {
-                    eventByCode(season:${season}, code:"${eventCodes[i]}") {
-                        matches {
-                            scores {
-                                ...on MatchScores2023 {
-                                    red{
-                                        totalPoints
-                                    }
-                                    blue{
-                                        totalPoints
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                `
-            })
+            const matches = `https://api.ftcscout.org/rest/v1/events/${season}/${eventCodes[i]}/matches`;
+            let matchScores = await axios.get(matches)
             .catch(error => {
                 console.error(error);
                 int.editReply("An error occured while fetching match data.");
-            })
-            .then(response => {
-                totalPoints = response.data.data.eventByCode.matches.flatMap(match =>
-                    ['red', 'blue'].map(color => match.scores[color].totalPoints)
-                );
-            })
+            });
 
             console.log("Match score numbers:", totalPoints);
 
