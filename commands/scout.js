@@ -197,7 +197,7 @@ module.exports = {
             //     totalPoints += match.scores.reduce((acc, score) => acc + score.)
             // })
 
-            console.log("Matches:", matchesResponse);
+            console.log("Matches:", matchesResponse.data);
             //console.log(matchesResponse.data.scores);
             
         }
