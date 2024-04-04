@@ -5,8 +5,7 @@ const readline = require('readline');
 const { DateTime } = require('luxon');
 const { error, count } = require('console');
 const { EmbedBuilder } = require('discord.js');
-const { request } = require('graphql-request');
-const gql = require('graphql-tag');
+
 
 function rounding(input) {
     const number = parseFloat(input);
@@ -162,9 +161,6 @@ module.exports = {
         if (avgegrankStr != 'null') totSeason.addFields({ name: '*Season ranking by points in end game:*', value: '`' + avgegrankStr + '`' });
             
 
-        await int.followUp({ embeds: [homePage, totSeason] });
-
-
         //Get every event code into a list
         //Use endpoint https://api.ftcscout.org/rest/v1/teams/8651/events/2022
         //After getting the code, use the query for ftcscout to find event avg and median for stats as well as how well the team performed, put performance into a graph (opr change over time)
@@ -186,25 +182,44 @@ module.exports = {
         
         //Constants I need for the query go here:
         let totalPoints = [];
+        let idsWithTeamNum = [];
 
         //Loop begin here for each event
         for (i = 0; i < eventCodes.length; i++) {
-            const matches = `https://api.ftcscout.org/rest/v1/events/${season}/${eventCodes[i]}/matches`;
-            let matchScores = await axios.get(matches)
+            const matchesRequest = `https://api.ftcscout.org/rest/v1/events/${season}/${eventCodes[i]}/matches`;
+            let matchesResponse = await axios.get(matchesRequest)
             .catch(error => {
                 console.error(error);
                 int.editReply("An error occured while fetching match data.");
             });
 
-            console.log("Match score numbers:", totalPoints);
+            // matchesResponse.forEach(match => {
+            //     totalPoints += match.scores.reduce((acc, score) => acc + score.)
+            // })
 
+            console.log("Matches:", matchesResponse);
+            //console.log(matchesResponse.data.scores);
+            
         }
         //2. Do the math and display it at the top
         //3. Show which matches the team played in and their data
         //4. Loop back to the top
         let teamOPR = [];
         //foreach (code in eventCodes)
+
         
+
+
+
+
+
+
+
+
+
+        //await int.followUp({ embeds: [homePage, totSeason] });
+
+
 
     },
 };
