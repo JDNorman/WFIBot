@@ -1,29 +1,28 @@
-//Any other imports go here
-const { SlashCommandBuilder } = require("discord.js");
+// Imports
+const discordmodules = require('./modules/discordmodules.js');
+const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
 
 module.exports = {
   //Write command build in here
   data: (pingSLASH = new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("The most complicated ping embed command ever")
-    .addStringOption((option) =>
-      option
-        .setName("text")
-        .setDescription("The text to echo back")
-        .setRequired(false),
-    )
-    .addUserOption((option) =>
-      option
-        .setName("target")
-        .setDescription("The user to echo back")
-        .setRequired(false),
-    )), //put the comma at the end of the line to signify the end of the command build and the start of the command execute
+  .setName("ping")
+  .setDescription("The most complicated ping embed command ever")
+  .addStringOption((option) =>
+    option
+      .setName("text")
+      .setDescription("The text to echo back")
+      .setRequired(false),
+  )
+  .addUserOption((option) =>
+    option
+      .setName("target")
+      .setDescription("The user to echo back")
+      .setRequired(false),
+  )), 
 
-  //Write command execute in here
   async execute(int) {
     console.log(`Someone used a ping command!`);
 
-    //pull information from the command builder
     const user = int.options.getUser("target");
     const msg = int.options.getString("text");
     const channel = int.channel;

@@ -1,36 +1,19 @@
 //CONSTANTS AND SETUP -------------------------------------------------\\
 
 //discord requires
-const { ActionRowBuilder } = require('discord.js');
-const { ActivityType } = require('discord.js');
-const { ButtonBuilder } = require('discord.js');
-const { ButtonStyle } = require('discord.js');
-const { Client } = require('discord.js');
-const { Collection } = require('discord.js');
-const { CommandInteraction } = require('discord.js');
-const { EmbedBuilder } = require('discord.js');
-const { Events } = require('discord.js');
-const { Intents } = require('discord.js');
-const { IntentsBitField } = require('discord.js');
-const { MessageActionRow } = require('discord.js');
-const { MessageAttachment } = require('discord.js');
-const { MessageButton } = require('discord.js');
-const { MessageCollector } = require('discord.js');
-const { MessageEmbed } = require('discord.js');
-const { MessageMentions } = require('discord.js');
-const { MessageSelectMenu } = require('discord.js');
-const { PermissionFlagsBits } = require('discord.js');
-const { Permissions } = require('discord.js');
-const { SlashCommandBuilder } = require('discord.js');
+const discordmodule = require('./modules/discordmodules.js');
+const ActivityType = require(discordmodule.ActivityType);
+const Client = require(discordmodule.ActivityType);
+const Collection = require(discordmodule.ActivityType);
+const Events = require(discordmodule.ActivityType);
+const IntentsBitField = require(discordmodule.ActivityType);
 
 //config requires
 const { token } = require('./config.json');
 
 //other setup
-const fs = require('node:fs');
-const path = require('node:path');
-const readline = require('readline');
-const { DateTime } = require('luxon');
+const fs = require(discordmodule.nodefs);
+const path = require(discordmodule.nodepath);
 
 //CONSTANTS AND SETUP -------------------------------------------------//
 //

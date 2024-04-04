@@ -1,7 +1,9 @@
-// imports
-const { SlashCommandBuilder } = require("discord.js");
-const { DateTime } = require('luxon');
-const path = require('path');
+// Imports
+const discordmodules = require('./modules/discordmodules.js');
+const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
+const { DateTime } = require(discordmodules.DateTime);
+const path = require(discordmodules.path);
+
 const configPath = path.resolve(__dirname, '..', 'config.json');
 const { color } = require(configPath);
 const decimalColor = parseInt(color, 16);

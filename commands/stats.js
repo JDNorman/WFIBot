@@ -1,6 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const axios = require('axios');
-const path = require('path');
+const discordmodules = require('./modules/discordmodules.js');
+const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
+const axios = require(discordmodules.axiox);
+const path = require(discordmodules.path);
 const configPath = path.resolve(__dirname, '..', 'graphqlServer.js');
 const { request }  = require(configPath);
 

@@ -1,17 +1,10 @@
-//imports
-const { SlashCommandBuilder } = require('discord.js');
-const axios = require('axios');
-const readline = require('readline');
-const { DateTime } = require('luxon');
-const { error, count } = require('console');
-const { EmbedBuilder } = require('discord.js');
-
-
-function rounding(input) {
-    const number = parseFloat(input);
-    const roundedNumber = Math.round(number * 100) / 100;
-    return roundedNumber.toFixed(2);
-}
+// Imports
+const discordmodules = require('./modules/discordmodules.js');
+const eventBuilder = require('./embeds/eventEmbed.js');
+const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
+const axios = require(discordmodules.axios);
+const EmbedBuilder = require(discordmodules.EmbedBuilder);
+const functions = require('./functions/functions.js');
 
 module.exports = {
     //Command Builder
@@ -120,25 +113,25 @@ module.exports = {
         const seasonStr = String(parseFloat(teamseason, 10)) || null;
 
         const totval = seasonData.data.tot.value;
-        const totvalStr = String(rounding(parseFloat(totval, 10))) || null;
+        const totvalStr = String(functions.rounding(parseFloat(totval, 10))) || null;
 
         const totrank = seasonData.data.tot.rank;
         const totrankStr = String(parseFloat(totrank, 10)) || null;
 
         const avgautoval = seasonData.data.auto.value;
-        const avgautovalStr = String(rounding(parseFloat(avgautoval, 10))) || null;
+        const avgautovalStr = String(functions.rounding(parseFloat(avgautoval, 10))) || null;
 
         const avgautorank = seasonData.data.auto.rank;
         const avgautorankStr = String(parseFloat(avgautorank, 10)) || null;
 
         const avgdcval = seasonData.data.dc.value;
-        const avgdcvalStr = String(rounding(parseFloat(avgdcval, 10))) || null;
+        const avgdcvalStr = String(functions.rounding(parseFloat(avgdcval, 10))) || null;
 
         const avgdcrank = seasonData.data.dc.rank;
         const avgdcrankStr = String(parseFloat(avgdcrank, 10)) || null;
 
         const avgegval = seasonData.data.eg.value;
-        const avgegvalStr = String(rounding(parseFloat(avgegval, 10))) || null;
+        const avgegvalStr = String(functions.rounding(parseFloat(avgegval, 10))) || null;
 
         const avgegrank = seasonData.data.eg.rank;
         const avgegrankStr = String(parseFloat(avgegrank, 10)) || null;
@@ -176,6 +169,7 @@ module.exports = {
         //Add every eventCode to a list.
         const eventCodes = eventCodeResponse.data.map(item => item.eventCode);
         console.log(eventCodes);
+        const filteredCodes = eventCodes.filter(str => str.charAt(str.length - 1) !== 'S');
     
         //Loop through every event code and do these things in this order:
         //1. Get event median and average and team opr, add opr to an external list teamOPR
@@ -185,20 +179,22 @@ module.exports = {
         let idsWithTeamNum = [];
 
         //Loop begin here for each event
-        for (i = 0; i < eventCodes.length; i++) {
-            const matchesRequest = `https://api.ftcscout.org/rest/v1/events/${season}/${eventCodes[i]}/matches`;
+        for (i = 0; i < filteredCodes.length; i++) {
+            const matchesRequest = `https://api.ftcscout.org/rest/v1/events/${season}/${filteredCodes[i]}/matches`;
             let matchesResponse = await axios.get(matchesRequest)
             .catch(error => {
                 console.error(error);
                 int.editReply("An error occured while fetching match data.");
             });
 
-            // matchesResponse.forEach(match => {
-            //     totalPoints += match.scores.reduce((acc, score) => acc + score.)
-            // })
+            const { data } = matchesResponse;
 
-            console.log("Matches:", matchesResponse.data);
-            //console.log(matchesResponse.data.scores);
+            totalPoints = data
+                .map(match => [match.scores.red, match.scores.blue])
+                .flat()
+                .map(score => score.totalPoints);
+
+            console.log(totalPoints);
             
         }
         //2. Do the math and display it at the top
