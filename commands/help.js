@@ -1,7 +1,6 @@
 //imports
-const discordmodules = require('./modules/discordmodules.js');
-const SlashCommandBuilder = require(discordmodule.SlashCommandBuilder);
-const path = require(discordmodules.path);
+const SlashCommandBuilder = require('discord.js');
+const path = require('path');
 
 const configPath = path.resolve(__dirname, '..', 'config.json');
 const { color } = require(configPath);

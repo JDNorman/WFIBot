@@ -1,6 +1,5 @@
 // Imports
-const discordmodules = require('./modules/discordmodules.js');
-const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
+const SlashCommandBuilder = require('discor.js');
 
 module.exports = {
   //Write command build in here

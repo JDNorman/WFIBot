@@ -1,10 +1,10 @@
 // Imports
-const discordmodules = require('./modules/discordmodules.js');
 const eventBuilder = require('./embeds/eventEmbed.js');
-const SlashCommandBuilder = require(discordmodules.SlashCommandBuilder);
-const axios = require(discordmodules.axios);
-const EmbedBuilder = require(discordmodules.EmbedBuilder);
 const functions = require('./functions/functions.js');
+
+const SlashCommandBuilder = require('discord.js');
+const axios = require('axios');
+const EmbedBuilder = require('discord.js');
 
 module.exports = {
     //Command Builder

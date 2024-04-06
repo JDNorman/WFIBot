@@ -1,19 +1,18 @@
 //CONSTANTS AND SETUP -------------------------------------------------\\
 
-//discord requires
-const discordmodule = require('./modules/discordmodules.js');
-const ActivityType = require(discordmodule.ActivityType);
-const Client = require(discordmodule.ActivityType);
-const Collection = require(discordmodule.ActivityType);
-const Events = require(discordmodule.ActivityType);
-const IntentsBitField = require(discordmodule.ActivityType);
+//Discord Intents
+const ActivityType = require('discord.js');
+const Client = require('discord.js');
+const Collection = require('discord.js');
+const Events = require('discord.js');
+const IntentsBitField = require('discord.js');
 
 //config requires
 const { token } = require('./config.json');
 
 //other setup
-const fs = require(discordmodule.nodefs);
-const path = require(discordmodule.nodepath);
+const fs = require('node:fs');
+const path = require('node:path');
 
 //CONSTANTS AND SETUP -------------------------------------------------//
 //
