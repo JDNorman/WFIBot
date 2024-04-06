@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 
-function eventBuilder(title, description, opr, ) {
+function eventBuilder(title, description, opr) {
     const embed = new MessageEmbed()
         .setTitle(title)
         .setDescription(description);

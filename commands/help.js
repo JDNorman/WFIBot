@@ -1,5 +1,5 @@
 //imports
-const SlashCommandBuilder = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const path = require('path');
 
 const configPath = path.resolve(__dirname, '..', 'config.json');

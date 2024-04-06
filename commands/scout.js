@@ -1,10 +1,17 @@
 // Imports
-const eventBuilder = require('./embeds/eventEmbed.js');
-const functions = require('./functions/functions.js');
+// const eventBuilder = require('./embeds/eventEmbed.js');
+// const functions = require('./functions/functions.js');
 
-const SlashCommandBuilder = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const axios = require('axios');
-const EmbedBuilder = require('discord.js');
+const path = require('path');
+
+const functionPath = path.resolve(__dirname, '..', 'functions/functions.js');
+const rounding = require(functionPath);
+
+const eventEmbedPath = path.resolve(__dirname, '..', 'embeds/eventEmbed.js');
+const eventEmbed = require(eventEmbedPath);
 
 module.exports = {
     //Command Builder
@@ -113,25 +120,25 @@ module.exports = {
         const seasonStr = String(parseFloat(teamseason, 10)) || null;
 
         const totval = seasonData.data.tot.value;
-        const totvalStr = String(functions.rounding(parseFloat(totval, 10))) || null;
+        const totvalStr = String(rounding(parseFloat(totval, 10))) || null;
 
         const totrank = seasonData.data.tot.rank;
         const totrankStr = String(parseFloat(totrank, 10)) || null;
 
         const avgautoval = seasonData.data.auto.value;
-        const avgautovalStr = String(functions.rounding(parseFloat(avgautoval, 10))) || null;
+        const avgautovalStr = String(rounding(parseFloat(avgautoval, 10))) || null;
 
         const avgautorank = seasonData.data.auto.rank;
         const avgautorankStr = String(parseFloat(avgautorank, 10)) || null;
 
         const avgdcval = seasonData.data.dc.value;
-        const avgdcvalStr = String(functions.rounding(parseFloat(avgdcval, 10))) || null;
+        const avgdcvalStr = String(rounding(parseFloat(avgdcval, 10))) || null;
 
         const avgdcrank = seasonData.data.dc.rank;
         const avgdcrankStr = String(parseFloat(avgdcrank, 10)) || null;
 
         const avgegval = seasonData.data.eg.value;
-        const avgegvalStr = String(functions.rounding(parseFloat(avgegval, 10))) || null;
+        const avgegvalStr = String(rounding(parseFloat(avgegval, 10))) || null;
 
         const avgegrank = seasonData.data.eg.rank;
         const avgegrankStr = String(parseFloat(avgegrank, 10)) || null;

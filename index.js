@@ -1,11 +1,11 @@
 //CONSTANTS AND SETUP -------------------------------------------------\\
 
 //Discord Intents
-const ActivityType = require('discord.js');
-const Client = require('discord.js');
-const Collection = require('discord.js');
-const Events = require('discord.js');
-const IntentsBitField = require('discord.js');
+const { ActivityType } = require('discord.js');
+const { Client } = require('discord.js');
+const { Collection } = require('discord.js');
+const { Events } = require('discord.js');
+const { IntentsBitField } = require('discord.js');
 
 //config requires
 const { token } = require('./config.json');
